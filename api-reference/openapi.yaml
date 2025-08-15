@@ -1,0 +1,548 @@
+openapi: 3.0.3
+info:
+  title: Asan Scrape
+  version: 0.1.0
+  description: Automate Your Task
+paths:
+  /robots/check/task/price/:
+    post:
+      operationId: robots_check_task_price_create
+      tags:
+        - robots
+      security:
+        - jwtAuth: []
+        - tokenAuth: []
+      responses:
+        "200":
+          description: No response body
+  /robots/create/task/:
+    post:
+      operationId: robots_create_task_create
+      tags:
+        - robots
+      security:
+        - jwtAuth: []
+        - tokenAuth: []
+      responses:
+        "200":
+          description: No response body
+  /robots/detail/{id}/dashboard/:
+    get:
+      operationId: robots_detail_dashboard_retrieve
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - robots
+      security:
+        - jwtAuth: []
+        - tokenAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RobotsDetailDashboard"
+          description: ""
+  /robots/detail/task/{id}/:
+    get:
+      operationId: robots_detail_task_retrieve
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      tags:
+        - robots
+      security:
+        - jwtAuth: []
+        - tokenAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskDetail"
+          description: ""
+  /robots/inputs/{robot_id}/:
+    get:
+      operationId: robots_inputs_retrieve
+      parameters:
+        - in: path
+          name: robot_id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - robots
+      security:
+        - jwtAuth: []
+        - tokenAuth: []
+      responses:
+        "200":
+          description: No response body
+  /robots/list/tasks/:
+    get:
+      operationId: robots_list_tasks_list
+      parameters:
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          schema:
+            type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: search
+          required: false
+          in: query
+          description: A search term.
+          schema:
+            type: string
+      tags:
+        - robots
+      security:
+        - jwtAuth: []
+        - tokenAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedTaskListList"
+          description: ""
+  /robots/list/tasks/pro/:
+    get:
+      operationId: robots_list_tasks_pro_list
+      parameters:
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          schema:
+            type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: search
+          required: false
+          in: query
+          description: A search term.
+          schema:
+            type: string
+      tags:
+        - robots
+      security:
+        - jwtAuth: []
+        - tokenAuth: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedTaskListList"
+          description: ""
+  /robots/robots/:
+    get:
+      operationId: robots_robots_list
+      parameters:
+        - name: search
+          required: false
+          in: query
+          description: A search term.
+          schema:
+            type: string
+      tags:
+        - robots
+      security:
+        - jwtAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Robots"
+          description: ""
+  /robots/robots-search/:
+    get:
+      operationId: robots_robots_search_list
+      parameters:
+        - name: search
+          required: false
+          in: query
+          description: A search term.
+          schema:
+            type: string
+      tags:
+        - robots
+      security:
+        - jwtAuth: []
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Robots"
+          description: ""
+  /robots/upload/task-file/:
+    post:
+      operationId: robots_upload_task_file_create
+      tags:
+        - robots
+      security:
+        - jwtAuth: []
+        - tokenAuth: []
+      responses:
+        "200":
+          description: No response body
+components:
+  schemas:
+    RobotsDetailDashboard:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: نام
+          maxLength: 200
+        en_name:
+          type: string
+          title: انگلیسی نام
+          maxLength: 200
+        icon:
+          type: string
+          format: uri
+          nullable: true
+          title: آیکون
+        image:
+          type: string
+          format: uri
+          title: تصویر
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,6}(?:\.\d{0,4})?$
+          title: هزینه ی هر درخواست
+          description: مقدار دلار مورد نیاز را وارد نمایید.
+        prerequisite:
+          type: string
+          nullable: true
+          title: پیش شرط
+          maxLength: 200
+        price_of_data_count:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: به ازای چند داده
+        short_explanation:
+          type: string
+          nullable: true
+          title: توضیح کوتاه
+          maxLength: 300
+        description:
+          type: string
+          title: توضیحات
+        description_for_samples:
+          type: string
+          nullable: true
+          title: توضیحات برای نمونه ها
+        csv_sample:
+          type: string
+          nullable: true
+          title: نمونه جدول
+        image_sample:
+          type: string
+          format: uri
+          nullable: true
+          title: نمونه ی تصویر
+        json_output_sample:
+          type: string
+          title: نمونه فایل JSON خروجی
+          description: یک نمونه از خروجی JSON این ربات را وارد کنید.
+        category:
+          type: integer
+          title: دسته بندی
+        image_how_it_works:
+          type: string
+          format: uri
+          nullable: true
+          title: تصویر چگونه کار میکند؟
+        how_it_works:
+          type: string
+          title: چگونه کار می‌کند
+        applications:
+          type: array
+          items:
+            $ref: "#/components/schemas/ApplicationsModel"
+          readOnly: true
+        features:
+          type: array
+          items:
+            $ref: "#/components/schemas/FeaturesModel"
+          readOnly: true
+      required:
+        - applications
+        - category
+        - description
+        - features
+        - how_it_works
+        - id
+        - image
+        - json_output_sample
+        - name
+    TaskDetail:
+      type: object
+      properties:
+        response:
+          nullable: true
+          title: پاسخ به صورت JSON
+        status:
+          enum:
+            - pending
+            - in_progress
+            - completed
+            - failed
+          type: string
+          description: |-
+            * `pending` - منتظر انجام
+            * `in_progress` - در حال انجام
+            * `completed` - انجام شده
+            * `failed` - ناتمام
+          x-spec-enum-id: 0d9e6120cce7b0c4
+          title: وضعیت تسک
+    PaginatedTaskListList:
+      type: object
+      required:
+        - count
+        - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/TaskList"
+    TaskList:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        robot:
+          type: integer
+          title: ربات
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+        request_number:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: تعداد درخواست ها
+        requests_made:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: تعداد درخواست های انجام شده
+        total_task_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,6}(?:\.\d{0,4})?$
+          title: هزینه کلی
+        discount:
+          type: integer
+          maximum: 100
+          minimum: 0
+          title: درصد تخفیف اعمال شده
+        cost:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,6}(?:\.\d{0,4})?$
+          title: هزینه گرفته شده
+        pricing_description:
+          type: string
+          nullable: true
+          title: توضیحات قیمت گذاری
+          maxLength: 300
+      required:
+        - created_at
+        - id
+        - robot
+        - status
+    ListRobotPrice:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: نام
+          maxLength: 200
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,6}(?:\.\d{0,4})?$
+          title: هزینه ی هر درخواست
+          description: مقدار دلار مورد نیاز را وارد نمایید.
+        prerequisite:
+          type: string
+          nullable: true
+          title: پیش شرط
+          maxLength: 200
+      required:
+        - id
+        - name
+    ApplicationsModel:
+      type: object
+      properties:
+        title:
+          type: string
+          nullable: true
+          title: عنوان
+          maxLength: 255
+        description:
+          type: string
+          nullable: true
+          title: توضیحات
+        icon:
+          type: string
+          format: uri
+          nullable: true
+          title: آیکون
+    FeaturesModel:
+      type: object
+      properties:
+        icon:
+          type: string
+          format: uri
+          nullable: true
+          title: آیکون
+        features:
+          type: string
+          title: قابلیت ها
+          maxLength: 255
+      required:
+        - features
+    TaskUpdate:
+      type: object
+      properties:
+        status:
+          enum:
+            - pending
+            - in_progress
+            - completed
+            - failed
+          type: string
+          description: |-
+            * `pending` - منتظر انجام
+            * `in_progress` - در حال انجام
+            * `completed` - انجام شده
+            * `failed` - ناتمام
+          x-spec-enum-id: 0d9e6120cce7b0c4
+          title: وضعیت تسک
+        next_page_token:
+          type: string
+          nullable: true
+          title: توکن ادامه ی دیتا
+        response:
+          nullable: true
+          title: پاسخ به صورت JSON
+        metadata:
+          nullable: true
+          title: " Meta JSON"
+        total_task_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,6}(?:\.\d{0,4})?$
+          title: هزینه کلی
+        pricing_description:
+          type: string
+          nullable: true
+          title: توضیحات قیمت گذاری
+          maxLength: 300
+    Robots:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: نام
+          maxLength: 200
+        icon:
+          type: string
+          format: uri
+          nullable: true
+          title: آیکون
+        image:
+          type: string
+          format: uri
+          title: تصویر
+        short_explanation:
+          type: string
+          nullable: true
+          title: توضیح کوتاه
+          maxLength: 300
+        is_pro_robot:
+          type: boolean
+          title: آیا ربات پیشرفته است؟
+        category:
+          type: integer
+          title: دسته بندی
+        status:
+          type: boolean
+          title: آیا فعال است؟
+      required:
+        - category
+        - id
+        - image
+        - name
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"
