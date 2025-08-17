@@ -48,7 +48,7 @@
             "pages": ["api-reference/introduction"]
           },
           {
-            "group": "Endpoint examples",
+            "group": "ربات ها",
             "pages": [
               "api-reference/endpoint/get-robotsdetail-dashboard",
               "api-reference/endpoint/get-robotsdetailtask-",
@@ -60,7 +60,12 @@
               "api-reference/endpoint/crypto-latest-price",
               "api-reference/endpoint/post-robotschecktaskprice",
               "api-reference/endpoint/post-robotscreatetask",
-              "api-reference/endpoint/auto-complete",
+              "api-reference/endpoint/auto-complete"
+            ]
+          },
+          {
+            "group": "ربات گوگل",
+            "pages": [
               "api-reference/endpoint/google-image",
               "api-reference/endpoint/google-maps",
               "api-reference/endpoint/google-news",
@@ -75,6 +80,31 @@
               "api-reference/endpoint/instagram-user-followings",
               "api-reference/endpoint/instagram-user-posts",
               "api-reference/endpoint/instagram-user-story",
+              "api-reference/endpoint/youtube-comment",
+              "api-reference/endpoint/youtube-search",
+              "api-reference/endpoint/youtube-video",
+              "api-reference/endpoint/youtube-related-video"
+            ]
+          },
+          {
+            "group": "ربات اینستاگرام",
+            "pages": [
+              "api-reference/endpoint/instagram-hashtag-media",
+              "api-reference/endpoint/instagram-post-details",
+              "api-reference/endpoint/instagram-profile",
+              "api-reference/endpoint/instagram-user-followers",
+              "api-reference/endpoint/instagram-user-followings",
+              "api-reference/endpoint/instagram-user-posts",
+              "api-reference/endpoint/instagram-user-story",
+              "api-reference/endpoint/youtube-comment",
+              "api-reference/endpoint/youtube-search",
+              "api-reference/endpoint/youtube-video",
+              "api-reference/endpoint/youtube-related-video"
+            ]
+          },
+          {
+            "group": "ربات یوتوب",
+            "pages": [
               "api-reference/endpoint/youtube-comment",
               "api-reference/endpoint/youtube-search",
               "api-reference/endpoint/youtube-video",

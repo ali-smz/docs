@@ -1,0 +1,13 @@
+/* html,
+body {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+.mntl-content,
+.mntl-sidebar,
+.mntl-header,
+.mntl-footer {
+  direction: rtl !important;
+  text-align: right !important;
+} */
