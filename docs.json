@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "asanscrape documentation",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -57,9 +57,28 @@
               "api-reference/endpoint/get-robotslisttaskspro",
               "api-reference/endpoint/get-robotsrobots-search",
               "api-reference/endpoint/get-robotsrobots",
+              "api-reference/endpoint/crypto-latest-price",
               "api-reference/endpoint/post-robotschecktaskprice",
               "api-reference/endpoint/post-robotscreatetask",
-              "api-reference/endpoint/post-robotsuploadtask-file"
+              "api-reference/endpoint/auto-complete",
+              "api-reference/endpoint/google-image",
+              "api-reference/endpoint/google-maps",
+              "api-reference/endpoint/google-news",
+              "api-reference/endpoint/google-search",
+              "api-reference/endpoint/google-trend-search",
+              "api-reference/endpoint/google-trend",
+              "api-reference/endpoint/google-video",
+              "api-reference/endpoint/instagram-hashtag-media",
+              "api-reference/endpoint/instagram-post-details",
+              "api-reference/endpoint/instagram-profile",
+              "api-reference/endpoint/instagram-user-followers",
+              "api-reference/endpoint/instagram-user-followings",
+              "api-reference/endpoint/instagram-user-posts",
+              "api-reference/endpoint/instagram-user-story",
+              "api-reference/endpoint/youtube-comment",
+              "api-reference/endpoint/youtube-search",
+              "api-reference/endpoint/youtube-video",
+              "api-reference/endpoint/youtube-related-video"
             ]
           }
         ]

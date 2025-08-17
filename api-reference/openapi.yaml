@@ -3,6 +3,9 @@ info:
   title: Asan Scrape
   version: 0.1.0
   description: Automate Your Task
+servers:
+  - url: https://backend.asanscrape.com
+    description: Production server
 paths:
   /robots/check/task/price/:
     post:
