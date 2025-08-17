@@ -72,18 +72,7 @@
               "api-reference/endpoint/google-search",
               "api-reference/endpoint/google-trend-search",
               "api-reference/endpoint/google-trend",
-              "api-reference/endpoint/google-video",
-              "api-reference/endpoint/instagram-hashtag-media",
-              "api-reference/endpoint/instagram-post-details",
-              "api-reference/endpoint/instagram-profile",
-              "api-reference/endpoint/instagram-user-followers",
-              "api-reference/endpoint/instagram-user-followings",
-              "api-reference/endpoint/instagram-user-posts",
-              "api-reference/endpoint/instagram-user-story",
-              "api-reference/endpoint/youtube-comment",
-              "api-reference/endpoint/youtube-search",
-              "api-reference/endpoint/youtube-video",
-              "api-reference/endpoint/youtube-related-video"
+              "api-reference/endpoint/google-video"
             ]
           },
           {
@@ -95,11 +84,7 @@
               "api-reference/endpoint/instagram-user-followers",
               "api-reference/endpoint/instagram-user-followings",
               "api-reference/endpoint/instagram-user-posts",
-              "api-reference/endpoint/instagram-user-story",
-              "api-reference/endpoint/youtube-comment",
-              "api-reference/endpoint/youtube-search",
-              "api-reference/endpoint/youtube-video",
-              "api-reference/endpoint/youtube-related-video"
+              "api-reference/endpoint/instagram-user-story"
             ]
           },
           {
