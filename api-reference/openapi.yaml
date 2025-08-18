@@ -26,9 +26,19 @@ paths:
       security:
         - jwtAuth: []
         - tokenAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateTask"
       responses:
         "200":
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskDetail"
+          description: ""
   /robots/detail/{id}/dashboard/:
     get:
       operationId: robots_detail_dashboard_retrieve
@@ -219,6 +229,45 @@ paths:
           description: No response body
 components:
   schemas:
+    CreateTask:
+      type: object
+      properties:
+        robot:
+          type: string
+          description: Name of the robot to use (e.g. googlemap, instagram, etc.)
+        googlemap inputs:
+          type: object
+          description: google map robot inputs
+          additionalProperties: true
+          example:
+            location:
+              latitude: 35.6921662
+              longitude: 51.0357141
+              zoom: 11
+            keyword: "cafe"
+            lang: "fa"
+            count: 4
+            country: "ir"
+        instagram inputs:
+          type: object
+          description: instagram robot inputs
+          additionalProperties: true
+          example:
+            hashtag: [developer, AI]
+            count: 4
+        pro inputs:
+          type: object
+          description: Pro robot inputs
+          additionalProperties: true
+          example:
+            username_or_id_or_url: [developer, AI]
+            radio: false
+            date: "2025/8/18"
+            json: { "test": "test" }
+            count: 4
+      required:
+        - robot
+        - inputs
     RobotsDetailDashboard:
       type: object
       properties:
@@ -255,8 +304,6 @@ components:
           maxLength: 200
         price_of_data_count:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
           title: به ازای چند داده
         short_explanation:
           type: string
@@ -327,12 +374,6 @@ components:
             - completed
             - failed
           type: string
-          description: |-
-            * `pending` - منتظر انجام
-            * `in_progress` - در حال انجام
-            * `completed` - انجام شده
-            * `failed` - ناتمام
-          x-spec-enum-id: 0d9e6120cce7b0c4
           title: وضعیت تسک
     PaginatedTaskListList:
       type: object
@@ -376,18 +417,13 @@ components:
           readOnly: true
         request_number:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
           title: تعداد درخواست ها
         requests_made:
           type: integer
-          maximum: 2147483647
-          minimum: -2147483648
           title: تعداد درخواست های انجام شده
         total_task_price:
           type: string
           format: decimal
-          pattern: ^-?\d{0,6}(?:\.\d{0,4})?$
           title: هزینه کلی
         discount:
           type: integer
@@ -397,7 +433,6 @@ components:
         cost:
           type: string
           format: decimal
-          pattern: ^-?\d{0,6}(?:\.\d{0,4})?$
           title: هزینه گرفته شده
         pricing_description:
           type: string
@@ -418,18 +453,14 @@ components:
         name:
           type: string
           title: نام
-          maxLength: 200
         price:
           type: string
           format: decimal
-          pattern: ^-?\d{0,6}(?:\.\d{0,4})?$
           title: هزینه ی هر درخواست
-          description: مقدار دلار مورد نیاز را وارد نمایید.
         prerequisite:
           type: string
           nullable: true
           title: پیش شرط
-          maxLength: 200
       required:
         - id
         - name
@@ -439,17 +470,13 @@ components:
         title:
           type: string
           nullable: true
-          title: عنوان
-          maxLength: 255
         description:
           type: string
           nullable: true
-          title: توضیحات
         icon:
           type: string
           format: uri
           nullable: true
-          title: آیکون
     FeaturesModel:
       type: object
       properties:
@@ -457,11 +484,9 @@ components:
           type: string
           format: uri
           nullable: true
-          title: آیکون
         features:
           type: string
           title: قابلیت ها
-          maxLength: 255
       required:
         - features
     TaskUpdate:
@@ -474,33 +499,19 @@ components:
             - completed
             - failed
           type: string
-          description: |-
-            * `pending` - منتظر انجام
-            * `in_progress` - در حال انجام
-            * `completed` - انجام شده
-            * `failed` - ناتمام
-          x-spec-enum-id: 0d9e6120cce7b0c4
-          title: وضعیت تسک
         next_page_token:
           type: string
           nullable: true
-          title: توکن ادامه ی دیتا
         response:
           nullable: true
-          title: پاسخ به صورت JSON
         metadata:
           nullable: true
-          title: " Meta JSON"
         total_task_price:
           type: string
           format: decimal
-          pattern: ^-?\d{0,6}(?:\.\d{0,4})?$
-          title: هزینه کلی
         pricing_description:
           type: string
           nullable: true
-          title: توضیحات قیمت گذاری
-          maxLength: 300
     Robots:
       type: object
       properties:
@@ -509,31 +520,22 @@ components:
           readOnly: true
         name:
           type: string
-          title: نام
-          maxLength: 200
         icon:
           type: string
           format: uri
           nullable: true
-          title: آیکون
         image:
           type: string
           format: uri
-          title: تصویر
         short_explanation:
           type: string
           nullable: true
-          title: توضیح کوتاه
-          maxLength: 300
         is_pro_robot:
           type: boolean
-          title: آیا ربات پیشرفته است؟
         category:
           type: integer
-          title: دسته بندی
         status:
           type: boolean
-          title: آیا فعال است؟
       required:
         - category
         - id
